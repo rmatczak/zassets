@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1>Create Users</h1>
+<h1>Create Location</h1>
 
 {!! Form::open(['method'=>'POST', 'action'=>'LocationsController@store'])!!} 
     

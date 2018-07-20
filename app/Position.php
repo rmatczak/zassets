@@ -17,7 +17,10 @@ class Position extends Model
         return $this->belongsTo('App\Document');        
     }
     
-    public function assets() {
+    public function asset() {
         return $this->belongsTo('App\Asset');        
     }
+    
+
+
 }

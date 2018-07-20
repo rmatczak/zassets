@@ -16,7 +16,7 @@ class Subcategory extends Model
         return $this->belongsTo('App\Category');
     }
     
-    public function assets() {
+    public function asset() {
         return $this->hasMany('App\Asset');
     }
 }

@@ -5,7 +5,8 @@
   <title>Dashboard Tables, Free Admin Template</title>
   <meta name="keywords" content="" />
   <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width">        
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="{{asset('css/styles.css')}}">
   <link rel="stylesheet" href="{{asset('css/templatemo_main.css')}}">
 
 </head>
@@ -25,13 +26,8 @@
     <div class="template-page-wrapper">
       <div class="navbar-collapse collapse templatemo-sidebar">
         <ul class="templatemo-sidebar-menu">
-          <li>
-            <form class="navbar-form">
-              <input type="text" class="form-control" id="templatemo_search_box" placeholder="Search...">
-              <span class="btn btn-default">Go</span>
-            </form>
-          </li>
-          <li><a href="index.html"><i class="fa fa-home"></i>Dashboard</a></li>
+          
+          <li><a href="{{route('home')}}"><i class="fa fa-home"></i>Dashboard</a></li>
           <li class="sub">
             <a href="javascript:;">
               <i class="fa fa-users"></i> Users <div class="pull-right"><span class="caret"></span></div>
@@ -52,49 +48,48 @@
           </li>
           <li class="sub">
             <a href="javascript:;">
-              <i class="fa fa-money"></i> Vendors <div class="pull-right"><span class="caret"></span></div>
+              <i class="fa fa-hand-o-right"></i> Vendors <div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
               <li><a href="{{route('vendors.index')}}">All Vendors</a></li>
               <li><a href="{{route('vendors.create')}}">Create Vendor</a></li>
             </ul>
           </li>
-          <li><a href="{{route('categories.index')}}"><i class="fa fa-cubes"></i>Asset Cattegories</a></li>
+           <li class="sub">
+            <a href="javascript:;">
+              <i class="fa fa-clipboard"></i> Asset Cattegories <div class="pull-right"><span class="caret"></span></div>
+            </a>
+            <ul class="templatemo-submenu">
+              <li><a href="{{route('categories.index')}}">All Categories</a></li>
+              <li><a href="{{route('categories.create')}}">Create Category</a></li>
+            </ul>
+          </li>
           <li class="sub">
             <a href="javascript:;">
-              <i class="fa fa-money"></i> Subcategories <div class="pull-right"><span class="caret"></span></div>
+              <i class="fa fa-paste"></i> Subcategories <div class="pull-right"><span class="caret"></span></div>
             </a>
             <ul class="templatemo-submenu">
               <li><a href="{{route('subcategories.index')}}">All Subcategories</a></li>
               <li><a href="{{route('subcategories.create')}}">Create Subcategory</a></li>
             </ul>
           </li>
-          <li class="sub">
-            <a href="javascript:;">
-              <i class="fa fa-database"></i> Nested Menu <div class="pull-right"><span class="caret"></span></div>
-            </a>
-            <ul class="templatemo-submenu">
-              <li><a href="#">Aenean</a></li>
-              <li><a href="#">Pellentesque</a></li>
-              <li><a href="#">Congue</a></li>             
-              <li><a href="#">Interdum</a></li>
-              <li><a href="#">Facilisi</a></li>
-            </ul>
-          </li>
-          <li><a href="data-visualization.html"><i class="fa fa-cubes"></i><span class="badge pull-right">9</span>Data Visualization</a></li>
-          <li><a href="maps.html"><i class="fa fa-map-marker"></i><span class="badge pull-right">42</span>Maps</a></li>
-          <li><a href="preferences.html"><i class="fa fa-cog"></i>Preferences</a></li>
-          <li><a href="javascript:;" data-toggle="modal" data-target="#confirmModal"><i class="fa fa-sign-out"></i>Sign Out</a></li>
+          
+          <li>
+              
+              <a href="{{ route('logout') }}"
+                 onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i>Sign Out</a>
+              <form action="{{ route('logout') }}" id="logout-form" method="POST">
+                  @csrf
+              </form>
+          </li>          
         </ul>
       </div><!--/.navbar-collapse -->
       <div class="templatemo-content-wrapper">
         <div class="templatemo-content">
-          <ol class="breadcrumb">
-            <li><a href="index.html">Admin Panel</a></li>
-            <li><a href="#">Manage Users</a></li>
-            <li class="active">Tables</li>
-          </ol>
+          
       @yield('content')
+      
       </div>
       </div>
       <!-- Modal -->
@@ -115,7 +110,7 @@
 
       <footer class="templatemo-footer">
         <div class="templatemo-copyright">
-          <p>Copyright &copy; 2084 Your Company Name <!-- Credit: www.templatemo.com --></p>
+          <p>Copyright &copy; 2018 zAssets <!-- Credit: www.templatemo.com --></p>
         </div>
       </footer>
     </div>

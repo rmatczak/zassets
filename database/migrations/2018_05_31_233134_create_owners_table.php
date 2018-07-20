@@ -18,7 +18,7 @@ class CreateOwnersTable extends Migration
             $table->string('name');
             $table->string('email')->unique()->index();
             $table->string('adlogin');
-            $table->string('depatment')->nullable();
+            $table->string('department')->nullable();
             $table->string('position')->nullable();
             $table->timestamps();
         });

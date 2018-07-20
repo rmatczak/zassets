@@ -13,7 +13,7 @@ class DocumentsRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,6 +24,10 @@ class DocumentsRequest extends FormRequest
     public function rules()
     {
         return [
+            
+            'number' => 'required',
+            'ticket' => 'required'
+            
             //
         ];
     }

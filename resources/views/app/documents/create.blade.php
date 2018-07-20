@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1>Create Document</h1>
+<h1>Inbound Document</h1>
 
 {!! Form::open(['method'=>'POST', 'action'=>'DocumentsController@store'])!!} 
 {{ Form::hidden('doctype_id','1')}}
@@ -11,6 +11,7 @@
 {{ Form::hidden('site', $site)}} 
 {{ Form::hidden('status','1')}}
 {{ Form::hidden('readiness','1')}} 
+
 <div class="form-group">    
     
     {!!Form::label('number', 'Number:')!!}
@@ -53,10 +54,10 @@
         </div>
         <div class="form-group">
             {!!Form::label('quantity', 'Quantity:')!!}
-            {!!Form::text('quantity[]', null, ['class'=>'form-control'])!!}
+            {!!Form::text('quantity[]', 1, ['class'=>'form-control'])!!}
         </div>
         <div class="input-group">
-            {!!Form::label('location_id', 'Item:')!!}
+            {!!Form::label('location_id', 'Location:')!!}
             {!!Form::select('location_id[]', $locations, null, ['class'=>'form-control'])!!}
         </div>
     
@@ -88,15 +89,16 @@
         </div>
         <div class="form-group">
             {!!Form::label('quantity', 'Quantity:')!!}
-            {!!Form::text('quantity[]', null, ['class'=>'form-control'])!!}
+            {!!Form::text('quantity[]', 1, ['class'=>'form-control'])!!}
         </div>
         <div class="input-group">
-            {!!Form::label('location_id', 'Item:')!!}
+            {!!Form::label('location_id', 'Location:')!!}
             {!!Form::select('location_id[]', $locations, null, ['class'=>'form-control'])!!}
         </div>
         <div class="input-group-addon"> 
             <a href="javascript:void(0)" class="btn btn-danger remove"><span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> Remove</a>
         </div>
+        
     </div>
 </div>
 

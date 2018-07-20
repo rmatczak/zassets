@@ -21,7 +21,7 @@ class Document extends Model
         return $this->belongsTo('App\Doctype');
     }
     
-    public function owners() {
+    public function owner() {
         return $this->morphToMany('App\Owner', 'ownerable');
     }
     

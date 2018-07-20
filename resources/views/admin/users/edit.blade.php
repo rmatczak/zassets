@@ -3,7 +3,7 @@
 @section('content')
 
 
-<h1>Create Users</h1>
+<h1>Update User</h1>
 
 {!! Form::model($user, ['method'=>'PATCH', 'action'=>['UsersController@update', $user->id]])!!} 
     
@@ -46,7 +46,7 @@
 
 </div>
 
-    {!!Form::submit('Create', ['class'=>'btn btn-info'])!!}
+    {!!Form::submit('Submit', ['class'=>'btn btn-info'])!!}
     
 
 {!!Form::close()!!}

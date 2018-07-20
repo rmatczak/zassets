@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Asset;
 use App\Document;
+use App\Http\Requests\DocumentsRequest;
 use App\Location;
+use App\Owner;
 use App\Position;
 use App\Site;
 use App\Subcategory;
@@ -61,7 +63,7 @@ class DocumentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DocumentsRequest $request)
     {
         //
         
@@ -77,7 +79,11 @@ class DocumentsController extends Controller
         4 = return
         5 = destroy
         */
+        
+        //  INBOUND
+        
         if ($doctype == 1) {
+         
             $document = Document::create($request->all());
 
             $site = Site::find($request->site);
@@ -86,6 +92,7 @@ class DocumentsController extends Controller
             if (!empty($request->name)){
                 for($i=0; $i<count($request->name); $i++){
                     if(!empty($request->name[$i])){
+                        
                         $assetinput = [
                             'subcategory_id' => $request->subcategory_id[$i],
                             'name' => $request->name[$i],
@@ -111,11 +118,7 @@ class DocumentsController extends Controller
                 }
             }
             
-            
-            
-            
-            
-            
+            //    OUTBOUND
             
         }
         elseif ($doctype == 2){
@@ -140,26 +143,27 @@ class DocumentsController extends Controller
                 if ($asset->has('owners')){
                     $asset->owners()->detach();
                 }
-                
-                
-               
-//                        
+                                      
                         $positioninput = [
                             'document_id' => $document->id,
                             'asset_id' => $asset->id,
-                            'quantity' => $request->quantity[$i]
+                            'quantity' => $asset->quantity
                         ];
                         
                         
                         Position::create($positioninput);
             }
         }
+        
+        // HANDOVER
+        
         elseif ($doctype == 3){
+            
             $document = Document::create($request->all());
 
             $site = Site::find($request->site);
             $document->sites()->save($site);
-            
+            $document->owner()->sync($request->owner_id);
             $assets = Asset::findOrFail($request->checkBoxArray);
             
             foreach($assets as $asset){
@@ -176,7 +180,7 @@ class DocumentsController extends Controller
                 $positioninput = [
                             'document_id' => $document->id,
                             'asset_id' => $asset->id,
-                            'quantity' => $request->quantity[$i]
+                            'quantity' => $asset->quantity
                         ];
                         
                         
@@ -185,9 +189,43 @@ class DocumentsController extends Controller
             
             
         }
-        elseif ($doctype == 4) {
         
+        // RETURN
+        
+        
+        elseif ($doctype == 4) {
+            
+            $document = Document::create($request->all());
+
+            $site = Site::find($request->site);
+            $document->sites()->save($site);
+            $document->owner()->sync($request->owner_id);
+            $assets = Asset::findOrFail($request->checkBoxArray);
+            foreach ($assets as $asset){
+            $assetinput = [
+                    
+                    'status' => 2,
+                    'location_id' => $request->location
+                ];
+                
+                $asset->update($assetinput);
+                $asset->owners()->detach($request->owner_id);
+                
+                $positioninput = [
+                            'document_id' => $document->id,
+                            'asset_id' => $asset->id,
+                            'quantity' => $asset->quantity
+                        ];
+                        
+                        
+                        Position::create($positioninput);
+            }
         }
+        
+        
+        //DECOMMISSION
+        
+        
         elseif ($doctype == 5){
             
         }
@@ -205,7 +243,7 @@ class DocumentsController extends Controller
     {
         //
         $document = Document::findOrFail($id);
-        $positions = Position::all()->where('document_id' == $id);
+        $positions = Position::where('document_id', $id)->get();
         
         return view('app.documents.show', compact('document', 'positions'));
     }
@@ -256,7 +294,7 @@ class DocumentsController extends Controller
                
         $vendors = Vendor::pluck('name','id');
         
-        $assets = Asset::all();
+        $assets = Asset::where('status',1)->get();
         
         return view('app.documents.send', compact('assets', 'userid', 'site', 'vendors'));
     }
@@ -269,18 +307,22 @@ class DocumentsController extends Controller
                
         $owners = Owner::pluck('name','id');
         
-        $assets = Asset::all()->whereStatus(1)->whereReadiness(1);
+        $assets = Asset::all()->where('status', 1)->where('readiness', 1);
         
         return view('app.documents.handover', compact('assets', 'userid', 'site', 'owners'));
     }
     
-    public function returnprotocol() {
+    public function returnprotocol($id) {
         $user = Auth::user();
                
         $userid = $user->id;
         $site = $user->sites->first()->id;
                
-        $owners = Owner::pluck('name','id');
+        $owner = Owner::findOrFail($id);
+        
+       
+        
+        return view('app.documents.return', compact('userid', 'site', 'owner'));
     }
     
     public function decommission() {

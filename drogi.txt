@@ -1,0 +1,83 @@
++--------+-----------+----------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+
+| Domain | Method    | URI                                    | Name                  | Action                                                                 | Middleware   |
++--------+-----------+----------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+
+|        | GET|HEAD  | /                                      |                       | Closure                                                                | web          |
+|        | POST      | admin/categories                       | categories.store      | App\Http\Controllers\CategoriesController@store                        | web,admin    |
+|        | GET|HEAD  | admin/categories                       | categories.index      | App\Http\Controllers\CategoriesController@index                        | web,admin    |
+|        | GET|HEAD  | admin/categories/create                | categories.create     | App\Http\Controllers\CategoriesController@create                       | web,admin    |
+|        | GET|HEAD  | admin/categories/{category}            | categories.show       | App\Http\Controllers\CategoriesController@show                         | web,admin    |
+|        | PUT|PATCH | admin/categories/{category}            | categories.update     | App\Http\Controllers\CategoriesController@update                       | web,admin    |
+|        | DELETE    | admin/categories/{category}            | categories.destroy    | App\Http\Controllers\CategoriesController@destroy                      | web,admin    |
+|        | GET|HEAD  | admin/categories/{category}/edit       | categories.edit       | App\Http\Controllers\CategoriesController@edit                         | web,admin    |
+|        | POST      | admin/site                             | site.store            | App\Http\Controllers\SitesController@store                             | web,admin    |
+|        | GET|HEAD  | admin/site                             | site.index            | App\Http\Controllers\SitesController@index                             | web,admin    |
+|        | GET|HEAD  | admin/site/create                      | site.create           | App\Http\Controllers\SitesController@create                            | web,admin    |
+|        | DELETE    | admin/site/{site}                      | site.destroy          | App\Http\Controllers\SitesController@destroy                           | web,admin    |
+|        | PUT|PATCH | admin/site/{site}                      | site.update           | App\Http\Controllers\SitesController@update                            | web,admin    |
+|        | GET|HEAD  | admin/site/{site}                      | site.show             | App\Http\Controllers\SitesController@show                              | web,admin    |
+|        | GET|HEAD  | admin/site/{site}/edit                 | site.edit             | App\Http\Controllers\SitesController@edit                              | web,admin    |
+|        | POST      | admin/subcategories                    | subcategories.store   | App\Http\Controllers\SubcategoriesController@store                     | web,admin    |
+|        | GET|HEAD  | admin/subcategories                    | subcategories.index   | App\Http\Controllers\SubcategoriesController@index                     | web,admin    |
+|        | GET|HEAD  | admin/subcategories/create             | subcategories.create  | App\Http\Controllers\SubcategoriesController@create                    | web,admin    |
+|        | DELETE    | admin/subcategories/{subcategory}      | subcategories.destroy | App\Http\Controllers\SubcategoriesController@destroy                   | web,admin    |
+|        | PUT|PATCH | admin/subcategories/{subcategory}      | subcategories.update  | App\Http\Controllers\SubcategoriesController@update                    | web,admin    |
+|        | GET|HEAD  | admin/subcategories/{subcategory}      | subcategories.show    | App\Http\Controllers\SubcategoriesController@show                      | web,admin    |
+|        | GET|HEAD  | admin/subcategories/{subcategory}/edit | subcategories.edit    | App\Http\Controllers\SubcategoriesController@edit                      | web,admin    |
+|        | POST      | admin/users                            | users.store           | App\Http\Controllers\UsersController@store                             | web,admin    |
+|        | GET|HEAD  | admin/users                            | users.index           | App\Http\Controllers\UsersController@index                             | web,admin    |
+|        | GET|HEAD  | admin/users/create                     | users.create          | App\Http\Controllers\UsersController@create                            | web,admin    |
+|        | PUT|PATCH | admin/users/{user}                     | users.update          | App\Http\Controllers\UsersController@update                            | web,admin    |
+|        | DELETE    | admin/users/{user}                     | users.destroy         | App\Http\Controllers\UsersController@destroy                           | web,admin    |
+|        | GET|HEAD  | admin/users/{user}                     | users.show            | App\Http\Controllers\UsersController@show                              | web,admin    |
+|        | GET|HEAD  | admin/users/{user}/edit                | users.edit            | App\Http\Controllers\UsersController@edit                              | web,admin    |
+|        | GET|HEAD  | admin/vendors                          | vendors.index         | App\Http\Controllers\VendorsController@index                           | web,admin    |
+|        | POST      | admin/vendors                          | vendors.store         | App\Http\Controllers\VendorsController@store                           | web,admin    |
+|        | GET|HEAD  | admin/vendors/create                   | vendors.create        | App\Http\Controllers\VendorsController@create                          | web,admin    |
+|        | GET|HEAD  | admin/vendors/{vendor}                 | vendors.show          | App\Http\Controllers\VendorsController@show                            | web,admin    |
+|        | PUT|PATCH | admin/vendors/{vendor}                 | vendors.update        | App\Http\Controllers\VendorsController@update                          | web,admin    |
+|        | DELETE    | admin/vendors/{vendor}                 | vendors.destroy       | App\Http\Controllers\VendorsController@destroy                         | web,admin    |
+|        | GET|HEAD  | admin/vendors/{vendor}/edit            | vendors.edit          | App\Http\Controllers\VendorsController@edit                            | web,admin    |
+|        | GET|HEAD  | api/user                               |                       | Closure                                                                | api,auth:api |
+|        | POST      | app/assets                             | assets.store          | App\Http\Controllers\AssetsController@store                            | web,auth     |
+|        | GET|HEAD  | app/assets                             | assets.index          | App\Http\Controllers\AssetsController@index                            | web,auth     |
+|        | GET|HEAD  | app/assets/create                      | assets.create         | App\Http\Controllers\AssetsController@create                           | web,auth     |
+|        | DELETE    | app/assets/{asset}                     | assets.destroy        | App\Http\Controllers\AssetsController@destroy                          | web,auth     |
+|        | PUT|PATCH | app/assets/{asset}                     | assets.update         | App\Http\Controllers\AssetsController@update                           | web,auth     |
+|        | GET|HEAD  | app/assets/{asset}                     | assets.show           | App\Http\Controllers\AssetsController@show                             | web,auth     |
+|        | GET|HEAD  | app/assets/{asset}/edit                | assets.edit           | App\Http\Controllers\AssetsController@edit                             | web,auth     |
+|        | GET|HEAD  | app/documents                          | documents.index       | App\Http\Controllers\DocumentsController@index                         | web,auth     |
+|        | POST      | app/documents                          | documents.store       | App\Http\Controllers\DocumentsController@store                         | web,auth     |
+|        | GET|HEAD  | app/documents/create                   | documents.create      | App\Http\Controllers\DocumentsController@create                        | web,auth     |
+|        | GET|HEAD  | app/documents/handover                 | documents.handover    | App\Http\Controllers\DocumentsController@handover                      | web,auth     |
+|        | GET|HEAD  | app/documents/receive                  | documents.receive     | App\Http\Controllers\DocumentsController@receive                       | web,auth     |
+|        | GET|HEAD  | app/documents/send                     | documents.send        | App\Http\Controllers\DocumentsController@send                          | web,auth     |
+|        | PUT|PATCH | app/documents/{document}               | documents.update      | App\Http\Controllers\DocumentsController@update                        | web,auth     |
+|        | DELETE    | app/documents/{document}               | documents.destroy     | App\Http\Controllers\DocumentsController@destroy                       | web,auth     |
+|        | GET|HEAD  | app/documents/{document}               | documents.show        | App\Http\Controllers\DocumentsController@show                          | web,auth     |
+|        | GET|HEAD  | app/documents/{document}/edit          | documents.edit        | App\Http\Controllers\DocumentsController@edit                          | web,auth     |
+|        | GET|HEAD  | app/documents/{id}/return              | documents.return      | App\Http\Controllers\DocumentsController@returnprotocol                | web,auth     |
+|        | POST      | app/locations                          | locations.store       | App\Http\Controllers\LocationsController@store                         | web,auth     |
+|        | GET|HEAD  | app/locations                          | locations.index       | App\Http\Controllers\LocationsController@index                         | web,auth     |
+|        | GET|HEAD  | app/locations/create                   | locations.create      | App\Http\Controllers\LocationsController@create                        | web,auth     |
+|        | PUT|PATCH | app/locations/{location}               | locations.update      | App\Http\Controllers\LocationsController@update                        | web,auth     |
+|        | DELETE    | app/locations/{location}               | locations.destroy     | App\Http\Controllers\LocationsController@destroy                       | web,auth     |
+|        | GET|HEAD  | app/locations/{location}               | locations.show        | App\Http\Controllers\LocationsController@show                          | web,auth     |
+|        | GET|HEAD  | app/locations/{location}/edit          | locations.edit        | App\Http\Controllers\LocationsController@edit                          | web,auth     |
+|        | POST      | app/owners                             | owners.store          | App\Http\Controllers\OwnersController@store                            | web,auth     |
+|        | GET|HEAD  | app/owners                             | owners.index          | App\Http\Controllers\OwnersController@index                            | web,auth     |
+|        | GET|HEAD  | app/owners/create                      | owners.create         | App\Http\Controllers\OwnersController@create                           | web,auth     |
+|        | PUT|PATCH | app/owners/{owner}                     | owners.update         | App\Http\Controllers\OwnersController@update                           | web,auth     |
+|        | DELETE    | app/owners/{owner}                     | owners.destroy        | App\Http\Controllers\OwnersController@destroy                          | web,auth     |
+|        | GET|HEAD  | app/owners/{owner}                     | owners.show           | App\Http\Controllers\OwnersController@show                             | web,auth     |
+|        | GET|HEAD  | app/owners/{owner}/edit                | owners.edit           | App\Http\Controllers\OwnersController@edit                             | web,auth     |
+|        | GET|HEAD  | home                                   | home                  | App\Http\Controllers\HomeController@index                              | web,auth     |
+|        | GET|HEAD  | login                                  | login                 | App\Http\Controllers\Auth\LoginController@showLoginForm                | web,guest    |
+|        | POST      | login                                  |                       | App\Http\Controllers\Auth\LoginController@login                        | web,guest    |
+|        | POST      | logout                                 | logout                | App\Http\Controllers\Auth\LoginController@logout                       | web          |
+|        | POST      | password/email                         | password.email        | App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail  | web,guest    |
+|        | POST      | password/reset                         |                       | App\Http\Controllers\Auth\ResetPasswordController@reset                | web,guest    |
+|        | GET|HEAD  | password/reset                         | password.request      | App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm | web,guest    |
+|        | GET|HEAD  | password/reset/{token}                 | password.reset        | App\Http\Controllers\Auth\ResetPasswordController@showResetForm        | web,guest    |
+|        | GET|HEAD  | register                               | register              | App\Http\Controllers\Auth\RegisterController@showRegistrationForm      | web,guest    |
+|        | POST      | register                               |                       | App\Http\Controllers\Auth\RegisterController@register                  | web,guest    |
++--------+-----------+----------------------------------------+-----------------------+------------------------------------------------------------------------+--------------+

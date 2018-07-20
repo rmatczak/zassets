@@ -106,7 +106,7 @@ class VendorsController extends Controller
             'country'=>$request->country
         ];
         
-        $vendor->address()->update($address);
+        $vendor->address()->update($addressinput);
 
         
         

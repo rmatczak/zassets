@@ -30,7 +30,7 @@
 <div class="form-group">
     
     {!!Form::label('zipcode', 'Zipcode:')!!}
-    {!!Form::text('zipcode', $vendor->address->first->zipcode, ['class'=>'form-control'])!!} 
+    {!!Form::text('zipcode', $vendor->address->first()->zipcode, ['class'=>'form-control'])!!} 
 
 </div>
 

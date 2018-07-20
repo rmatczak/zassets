@@ -42,8 +42,10 @@ Route::group(['middleware'=>'auth'], function(){
 
     Route::resource('/app/owners', 'OwnersController');
     
-    Route::get('/app/documents/receive', 'DocumentsController@receive');
+    Route::get('/app/documents/receive', 'DocumentsController@receive')->name('documents.receive');
+    Route::get('/app/documents/handover', 'DocumentsController@handover')->name('documents.handover');
     Route::get('/app/documents/send', 'DocumentsController@send')->name('documents.send');
+    Route::get('/app/documents/{id}/return', ['uses' => 'DocumentsController@returnprotocol', 'as'=>'documents.return']);
     Route::resource('/app/documents', 'DocumentsController');
     
     Route::resource('/app/assets', 'AssetsController');
